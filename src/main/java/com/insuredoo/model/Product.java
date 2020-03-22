@@ -6,14 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-
+import javax.persistence.SequenceGenerator;
 
 @Entity
+@SequenceGenerator(name="prodSeq", initialValue=1001, allocationSize=100)
 public class Product {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator="prodSeq")
 	private int productId;
 	private String product;
 	private double amount;

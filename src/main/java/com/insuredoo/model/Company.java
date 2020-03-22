@@ -2,21 +2,25 @@ package com.insuredoo.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 
 
 @Entity
+@SequenceGenerator(name="compSeq", initialValue=11, allocationSize=100)
 public class Company {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator="compSeq")
 	private int companyId;
 	
+	@Column(unique = true)
 	private String companyName;	
 	private String islamic;
 	

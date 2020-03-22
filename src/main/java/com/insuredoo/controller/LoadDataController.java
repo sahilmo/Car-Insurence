@@ -5,17 +5,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.insuredoo.service.CompanyService;
+import com.insuredoo.service.ProductService;
 
 @RestController
 public class LoadDataController {
 
 	@Autowired
 	private CompanyService cs;
-	
-	@RequestMapping(path="/loadData")
+
+	@Autowired
+	private ProductService ps;
+
+	@RequestMapping(path = "/")
 	public void setDataInDB() {
 		cs.saveCompany();
-		
+		ps.saveProducts();
 	}
-	
+
 }
