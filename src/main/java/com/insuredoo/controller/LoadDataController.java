@@ -1,13 +1,14 @@
 package com.insuredoo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.insuredoo.service.CompanyService;
 import com.insuredoo.service.ProductService;
 
-@RestController
+@Controller
 public class LoadDataController {
 
 	@Autowired
@@ -15,11 +16,18 @@ public class LoadDataController {
 
 	@Autowired
 	private ProductService ps;
-
-	@RequestMapping(path = "/")
-	public void setDataInDB() {
-		cs.saveCompany();
-		ps.saveProducts();
+	
+	int counter = 0;
+	
+	@GetMapping(path = "/")
+	public String setDataInDB(Model model) {
+		if (counter==0) {
+			cs.saveCompany();
+			ps.saveProducts();
+			counter++;
+		}		
+		
+		return "home";
 	}
 
 }

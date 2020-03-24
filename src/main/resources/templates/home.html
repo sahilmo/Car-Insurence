@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: header"></head>
+<nav th:replace="layouts :: navbar"></nav>
+<body>
+	<div class="container">
+	<form>
+		<div class="row pt-4">
+		<div class="col-9">
+			<div class="form-group input-group input-group-lg">
+				<input type="text" class="form-control" id="search"
+					placeholder="Enter Product Keywords.."
+					aria-describedby="inputGroup-sizing-lg">
+			</div>
+		</div>
+		<div class="col">
+			<button type="submit" class="btn btn-primary">Search</button>
+		</div>
+		</div>
+	</form>
+
+
+	</div>
+</body>
+</html>
