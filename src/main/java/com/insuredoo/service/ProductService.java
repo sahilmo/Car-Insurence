@@ -2,6 +2,7 @@ package com.insuredoo.service;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,7 @@ public class ProductService {
 				p.setTax(Double.parseDouble(line[6]));
 				pDTO.save(p);
 			}
+			cr.close();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -45,4 +47,9 @@ public class ProductService {
 		}
 	}
 	
+	public List<Product> searchProducts(String key){
+		//String keyword = key.substring(0, 1).toUpperCase() + key.substring(1);
+
+	return	pDTO.findProducts(key);
+	}
 }

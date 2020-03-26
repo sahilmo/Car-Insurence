@@ -32,6 +32,7 @@ public class CompanyService {
 				c.setIslamic(data[1]);
 				cDTO.save(c);
 			}
+			br.close();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

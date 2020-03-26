@@ -4,11 +4,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 
@@ -24,7 +27,8 @@ public class Company {
 	private String companyName;	
 	private String islamic;
 	
-	@OneToMany(mappedBy = "company")
+	@JsonBackReference
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "company")
 	private List<Product> products;
 
 	public int getCompanyId() {

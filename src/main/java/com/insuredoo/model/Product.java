@@ -8,12 +8,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
-@SequenceGenerator(name="prodSeq", initialValue=1001, allocationSize=100)
+@SequenceGenerator(name = "prodSeq", initialValue = 1001, allocationSize = 100)
 public class Product {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator="prodSeq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "prodSeq")
 	private int productId;
 	private String product;
 	private double amount;
@@ -21,10 +23,18 @@ public class Product {
 	private int modelTo;
 	private String brands;
 	private double tax;
-	
-	@ManyToOne
-	@JoinColumn(name="companyId")
+
+	@JsonManagedReference
+	@ManyToOne()
+	@JoinColumn(name = "companyId")
 	private Company company;
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", product=" + product + ", amount=" + amount + ", modelFrom="
+				+ modelFrom + ", modelTo=" + modelTo + ", brands=" + brands + ", tax=" + tax + ", company=" + company
+				+ "]";
+	}
 
 	public int getProductId() {
 		return productId;
@@ -89,5 +99,5 @@ public class Product {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-	
+
 }
