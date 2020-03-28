@@ -29,13 +29,6 @@ public class Product {
 	@JoinColumn(name = "companyId")
 	private Company company;
 
-	@Override
-	public String toString() {
-		return "Product [productId=" + productId + ", product=" + product + ", amount=" + amount + ", modelFrom="
-				+ modelFrom + ", modelTo=" + modelTo + ", brands=" + brands + ", tax=" + tax + ", company=" + company
-				+ "]";
-	}
-
 	public int getProductId() {
 		return productId;
 	}
@@ -100,4 +93,13 @@ public class Product {
 		this.company = company;
 	}
 
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", product=" + product + ", amount=" + amount + ", modelFrom="
+				+ modelFrom + ", modelTo=" + modelTo + ", brands=" + brands + ", tax=" + tax + ","
+						+ " company=" + company
+				+ "]";
+	}
+	
+	
 }

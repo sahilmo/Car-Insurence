@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.insuredoo.model.Product;
 import com.insuredoo.service.CompanyService;
@@ -34,12 +33,11 @@ public class LoadDataController {
 		}
 		return "home";
 	}
-
+	
 	@PostMapping("/find")
-	@ResponseBody
-	public List<Product> findProducts(@RequestParam String key) {
-		System.out.println("KEY " + key);
-		return ps.searchProducts(key);
+	public String findProducts(Model model, @RequestParam String key) {
+		List<Product> products =  ps.searchProducts(key.toUpperCase());
+		model.addAttribute("products" ,products);
+		return "Home";
 	}
-
 }

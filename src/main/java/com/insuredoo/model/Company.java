@@ -66,7 +66,8 @@ public class Company {
 	@Override
 	public String toString() {
 		return "Company [companyId=" + companyId + ", companyName=" + companyName + ", islamic=" + islamic
-				+ ", products=" + products + "]";
+				//+ ", products=" + products
+				+ "]";
 	}
 	
 	

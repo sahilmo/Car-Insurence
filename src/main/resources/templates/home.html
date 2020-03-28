@@ -4,11 +4,11 @@
 <nav th:replace="layouts :: navbar"></nav>
 <body>
 	<div class="container">
-	<form>
+	<form th:action="@{/find}"  method="post">
 		<div class="row pt-4">
 		<div class="col-9">
 			<div class="form-group input-group input-group-lg">
-				<input type="text" class="form-control" id="search"
+				<input type="text" th:value="${key}" name="key" id="key" class="form-control" 
 					placeholder="Enter Product Keywords.."
 					aria-describedby="inputGroup-sizing-lg">
 			</div>
@@ -18,7 +18,34 @@
 		</div>
 		</div>
 	</form>
+	<hr>
+	<table th:if="${products != null}" class="table table-sm table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>product</th>
+					<th>amount</th>
+					<th>Model From</th>
+					<th>Model To</th>
+					<th>Brands Covered</th>
+					<th>Tax</th>
+					<th>Company</th>
+					<th>Takaful</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="p : ${products}">
+					<td th:text="${p.product}" />
+					<td th:text="${p.amount}" />
+					<td th:text="${p.modelFrom}" />
+					<td th:text="${p.modelTo}" />
+					<td th:text="${p.brands}" />
+					<td th:text="${p.Tax}" />
+					<td th:text="${p.Company.companyName}" />
+					<td th:text="${p.Company.islamic}" />
+				</tr>
+			</tbody>
 
+		</table>
 
 	</div>
 </body>
