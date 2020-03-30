@@ -4,22 +4,32 @@
 <nav th:replace="layouts :: navbar"></nav>
 <body>
 	<div class="container">
-	<form th:action="@{/find}"  method="post">
-		<div class="row pt-4">
-		<div class="col-9">
-			<div class="form-group input-group input-group-lg">
-				<input type="text" th:value="${key}" name="key" id="key" class="form-control" 
-					placeholder="Enter Product Keywords.."
-					aria-describedby="inputGroup-sizing-lg">
+		<form th:action="@{/find}" id="search-form"
+			th:object="${SearchCriteria}" method="post">
+			<div class="row pt-4">
+				<div class="col-9">
+					<div class="form-group input-group input-group-lg">
+						<input type="text" th:value="${keyword}" name="keyword"
+							id="keyword" class="form-control"
+							placeholder="Enter Product Keywords.."
+							aria-describedby="inputGroup-sizing-lg">
+					</div>
+				</div>
+				<div class="col">
+					<button type="submit" id="btn-search" class="btn btn-primary">Search</button>
+				</div>
 			</div>
+		</form>
+		<hr>
+		<div id="resultData"></div>
+		<div class = "d-flex justify-content-center">
+		<div id="loader" class="spinner-border text-primary" role="status">
+			<span class="sr-only">Loading...</span>
 		</div>
-		<div class="col">
-			<button type="submit" class="btn btn-primary">Search</button>
 		</div>
-		</div>
-	</form>
-	<hr>
-	<table th:if="${products != null}" class="table table-sm table-bordered table-striped">
+		
+		<table th:if="${products != null}"
+			class="table table-sm table-bordered table-striped">
 			<thead class="thead-dark">
 				<tr>
 					<th>product</th>
@@ -48,5 +58,6 @@
 		</table>
 
 	</div>
+	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
